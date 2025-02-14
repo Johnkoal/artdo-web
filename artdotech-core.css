@@ -1,0 +1,225 @@
+/* Fonts 
+@font-face {
+    font-family: 'helveticaltstd-light';
+    src: url('../lib/bootstrap/dist/fonts/helveticaltstd-light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'helveticaltstd-bold';
+    src: url('../lib/bootstrap/dist/fonts/helveticaltstd-bold.otf') format('opentype');
+}
+
+body {
+    font-family: helveticaltstd-light;
+}*/
+
+/* Background */
+.bg-adt-red {
+    background-color: #ED1C24;
+}
+
+.bg-adt-red-ligth {
+    background-color: rgba(237, 28, 36, 0.80);
+}
+
+.bg-adt-blue {
+    background-color: #1D5998;
+}
+
+.bg-adt-blue-ligth {
+    background-color: rgba(29, 89, 152, 0.80);
+}
+
+.bg-adt-orange {
+    background-color: #F2662C;
+}
+
+.bg-adt-orange-ligth {
+    background-color: rgba(242, 102, 44, 0.80);
+}
+
+.bg-adt-purple {
+    background-color: #7F2F84;
+}
+
+.bg-adt-purple-ligth {
+    background-color: rgba(127, 47, 132, 0.80);
+}
+
+.bg-adt-gray1 {
+    background-color: #F2F3F4;
+}
+
+.bg-adt-gray2 {
+    background-color: #E6E7E9;
+}
+
+.bg-adt-gray3 {
+    background-color: #D1D2D4;
+}
+
+/* Buttons */
+.btn-adt-red {
+    background-color: #ED1C24;
+    color: white;
+}
+
+.btn-adt-red:hover {
+    background-color: rgba(237, 28, 36, 0.80);
+    color: white;
+}
+
+.btn-adt-blue {
+    background-color: #1D5998;
+    color: white;
+}
+
+.btn-adt-blue:hover {
+    background-color: rgba(29, 89, 152, 0.80);
+    color: white;
+}
+
+.btn-adt-orange {
+    background-color: #F2662C;
+    color: white;
+}
+
+.btn-adt-orange:hover {
+    background-color: rgba(242, 102, 44, 0.80);
+    color: white;
+}
+
+.btn-adt-purple {
+    background-color: #7F2F84;
+    color: white;
+}
+
+.btn-adt-purple:hover {
+    background-color: rgba(127, 47, 132, 0.80);
+    color: white;
+}
+
+/* Buttons outline */
+.btn-outline-red {
+    color: #ED1C24;
+    background-color: transparent;
+    background-image: none;
+    border-color: #ED1C24;
+}
+
+.btn-outline-red:hover {
+    color: #fff;
+    background-color: #ED1C24;
+    border-color: #ED1C24;
+}
+
+.btn-outline-blue {
+    color: #1D5998;
+    background-color: transparent;
+    background-image: none;
+    border-color: #1D5998;
+}
+
+.btn-outline-blue:hover {
+    color: #fff;
+    background-color: #1D5998;
+    border-color: #1D5998;
+}
+
+.btn-outline-orange {
+    color: #F2662C;
+    background-color: transparent;
+    background-image: none;
+    border-color: #F2662C;
+}
+
+.btn-outline-orange:hover {
+    color: #fff;
+    background-color: #F2662C;
+    border-color: #F2662C;
+}
+
+.btn-outline-purple {
+    color: #7F2F84;
+    background-color: transparent;
+    background-image: none;
+    border-color: #7F2F84;
+}
+
+.btn-outline-purple:hover {
+    color: #fff;
+    background-color: #7F2F84;
+    border-color: #7F2F84;
+}
+
+/* Text 
+.text-adt-font-ligth {
+    font-family: helveticaltstd-light;
+}
+
+.text-adt-font-bold {
+    font-family: helveticaltstd-bold;
+}*/
+
+.text-adt-red {
+    color: #ED1C24;
+}
+
+.text-adt-red-ligth {
+    color: rgba(237, 28, 36, 0.80);
+}
+
+.text-adt-blue {
+    color: #1D5998;
+}
+
+.text-adt-blue-ligth {
+    color: rgba(29, 89, 152, 0.80);
+}
+
+.text-adt-orange {
+    color: #F2662C;
+}
+
+.text-adt-orange-ligth {
+    color: rgba(242, 102, 44, 0.80);
+}
+
+.text-adt-purple {
+    color: #7F2F84;
+}
+
+.text-adt-purple-ligth {
+    color: rgba(127, 47, 132, 0.80);
+}
+
+.text-adt-gray1 {
+    color: #F2F3F4;
+}
+
+.text-adt-gray2 {
+    color: #E6E7E9;
+}
+
+.text-adt-gray3 {
+    color: #D1D2D4;
+}
+
+/* H 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: helveticaltstd-light;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: helveticaltstd-bold;
+}*/

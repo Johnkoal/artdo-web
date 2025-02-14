@@ -1,0 +1,9 @@
+version: "3.0"
+
+services:
+  artdotech.website:
+    container_name: artdotech.website
+    image: johnkoal/artdotech.website:latest
+    restart: always
+    ports:
+      - 8090:8080
