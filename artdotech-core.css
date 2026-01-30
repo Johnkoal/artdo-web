@@ -1,3 +1,19 @@
+:root {
+    --adt-red: #ED1C24;
+    --adt-blue: #1D5998;
+    --adt-orange: #F2662C;
+    --adt-purple: #7F2F84;
+    --adt-gray1: #F2F3F4;
+    --adt-dark: #222;
+    --adt-light: #fff;
+    --adt-font-main: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--adt-font-main);
+    color: var(--adt-dark);
+}
+
 /* Fonts 
 @font-face {
     font-family: 'helveticaltstd-light';
@@ -222,4 +238,357 @@ h6 {
 .h5,
 .h6 {
     font-family: helveticaltstd-bold;
-}*/
+}
+
+/* Modern Redesign Styles */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    background: linear-gradient(135deg, rgba(29, 89, 152, 0.9), rgba(127, 47, 132, 0.8)), url('/static/tech_hero_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.service-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    border-bottom: 5px solid transparent;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.service-card.blue {
+    border-bottom-color: var(--adt-blue);
+}
+
+.service-card.purple {
+    border-bottom-color: var(--adt-purple);
+}
+
+.service-card.orange {
+    border-bottom-color: var(--adt-orange);
+}
+
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 3rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--adt-blue);
+    border-radius: 2px;
+}
+
+/* Footer Styles */
+.footer-section {
+    background-color: #1a1a1a;
+    color: #aeaeae;
+    position: relative;
+    font-size: 0.95rem;
+}
+
+.footer-gradient-border {
+    height: 4px;
+    background: linear-gradient(90deg, var(--adt-purple), var(--adt-blue), var(--adt-red), var(--adt-orange));
+    width: 100%;
+}
+
+.footer-brand img {
+    filter: brightness(0) invert(1);
+    /* Make logo white if it's not already */
+}
+
+.footer-link {
+    color: #aeaeae;
+    text-decoration: none;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.footer-link:hover {
+    color: white;
+    padding-left: 5px;
+    text-decoration: none;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    transition: background 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    background: var(--adt-blue);
+    transform: translateY(-3px);
+    color: white;
+    text-decoration: none;
+}
+
+.bg-black {
+    background-color: #000;
+}
+
+/* Timeline Chain Layout */
+.timeline {
+    position: relative;
+    padding: 0;
+    list-style: none;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: linear-gradient(180deg, var(--adt-blue), var(--adt-purple), var(--adt-orange));
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 4rem;
+}
+
+.timeline-item::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.timeline-content {
+    position: relative;
+    width: 45%;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    float: left;
+    margin-right: 5%;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    float: right;
+    margin-left: 5%;
+}
+
+/* Connector Dot */
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 4px solid var(--adt-blue);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.timeline-item:nth-child(2) .timeline-dot {
+    border-color: var(--adt-purple);
+}
+
+.timeline-item:nth-child(3) .timeline-dot {
+    border-color: var(--adt-red);
+}
+
+.timeline-item:nth-child(4) .timeline-dot {
+    border-color: var(--adt-orange);
+}
+
+.timeline-item:nth-child(5) .timeline-dot {
+    border-color: var(--adt-blue);
+}
+
+/* Connector Line to Card */
+.timeline-content::after {
+    content: "";
+    position: absolute;
+    top: 56px;
+    width: 0;
+    height: 4px;
+    background: #e9ecef;
+    /* Fallback */
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+
+    /* Timeline Adjustments */
+    .timeline::before {
+        left: 30px;
+    }
+
+    .timeline-item .timeline-content {
+        width: calc(100% - 80px);
+        float: right;
+        margin-left: 20px;
+    }
+
+    .timeline-dot {
+        left: 30px;
+    }
+
+    /* Typography Scaling */
+    .hero-content h1 {
+        font-size: 2.5rem;
+        /* Smaller font for mobile */
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .h1,
+    h1 {
+        font-size: 2rem;
+    }
+
+    .display-3 {
+        font-size: 2.5rem;
+    }
+
+    .display-4 {
+        font-size: 2.2rem;
+    }
+
+    /* Spacing Adjustments */
+    .container.py-5 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    .py-5 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+}
+
+/* Header Styles */
+.header-section {
+    background-color: #1a1a1a;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    position: relative;
+}
+
+.header-gradient-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--adt-purple), var(--adt-blue), var(--adt-red), var(--adt-orange));
+}
+
+.navbar-brand span {
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+.header-section .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.header-section .nav-link:hover {
+    color: white !important;
+}
+
+/* Hover underline effect */
+.header-section .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--adt-blue);
+    transition: width 0.3s ease;
+}
+
+.header-section .nav-link:hover::after {
+    width: 25px;
+}
+
+/* Contact button specific style */
+.header-section .nav-link.btn {
+    border-width: 1.5px;
+}
+
+.header-section .nav-link.btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: white;
+}
+
+.header-section .nav-link.btn::after {
+    display: none;
+    /* No underline for button */
+}

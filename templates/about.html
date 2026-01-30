@@ -1,0 +1,58 @@
+{{define "content"}}
+<div class="position-relative bg-adt-gray1 py-5">
+    <div class="container text-center py-5">
+        <h1 class="display-4 font-weight-bold mb-4">{{.T.about_title}}</h1>
+        <p class="lead text-muted mx-auto" style="max-width: 800px;">
+            {{.T.about_subtitle}}
+        </p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <!-- Vision Section -->
+    <div class="row align-items-center mb-5 py-5 border-bottom border-light">
+        <div class="col-md-6 order-md-2 mb-4 mb-md-0">
+            <img src="/static/vision_artistic.png" class="img-fluid rounded shadow-lg" alt="{{.T.vision_title}}">
+        </div>
+        <div class="col-md-6 order-md-1 pr-md-5">
+            <h2 class="text-adt-blue font-weight-bold mb-4">{{.T.vision_title}}</h2>
+            <p class="lead text-muted text-justify">
+                {{.T.vision_desc}}
+            </p>
+            <div class="mt-4">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="fas fa-chart-line text-adt-purple fa-2x mr-3"></i>
+                    <span class="font-weight-bold ml-2">{{.T.vision_growth}}</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-globe-americas text-adt-blue fa-2x mr-3"></i>
+                    <span class="font-weight-bold ml-2">{{.T.vision_global}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mission Section -->
+    <div class="row align-items-center py-5">
+        <div class="col-md-6 mb-4 mb-md-0">
+            <img src="/static/mission_artistic.png" class="img-fluid rounded shadow-lg" alt="{{.T.mission_title}}">
+        </div>
+        <div class="col-md-6 pl-md-5">
+            <h2 class="text-adt-purple font-weight-bold mb-4">{{.T.mission_title}}</h2>
+            <p class="lead text-muted text-justify">
+                {{.T.mission_desc}}
+            </p>
+            <div class="mt-4">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="fas fa-cogs text-adt-orange fa-2x mr-3"></i>
+                    <span class="font-weight-bold ml-2">{{.T.mission_innovation}}</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-shield-alt text-adt-red fa-2x mr-3"></i>
+                    <span class="font-weight-bold ml-2">{{.T.mission_security}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}

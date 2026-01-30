@@ -1,0 +1,67 @@
+{{define "content"}}
+<div class="position-relative bg-adt-gray1 py-5">
+    <div class="container text-center py-5">
+        <h1 class="display-4 font-weight-bold mb-4">{{.T.services_page_title}}</h1>
+        <p class="lead text-muted mx-auto" style="max-width: 800px;">
+            {{.T.services_page_subtitle}}
+        </p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="timeline">
+        <!-- Item 1 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <img src="/static/software_development.png" class="img-fluid rounded mb-3 shadow-sm"
+                    alt="{{.T.srv_dev_title}}">
+                <h4 class="text-adt-blue font-weight-bold">{{.T.srv_dev_title}}</h4>
+                <p class="text-muted">{{.T.srv_dev_desc}}</p>
+            </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <img src="/static/tech_consulting.png" class="img-fluid rounded mb-3 shadow-sm"
+                    alt="{{.T.srv_consulting_title}}">
+                <h4 class="text-adt-purple font-weight-bold">{{.T.srv_consulting_title}}</h4>
+                <p class="text-muted">{{.T.srv_consulting_desc}}</p>
+            </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <img src="/static/support.jpeg" class="img-fluid rounded mb-3 shadow-sm" alt="{{.T.srv_support_title}}">
+                <h4 class="text-adt-red font-weight-bold">{{.T.srv_support_title}}</h4>
+                <p class="text-muted">{{.T.srv_support_desc}}</p>
+            </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <img src="/static/integration.jpeg" class="img-fluid rounded mb-3 shadow-sm"
+                    alt="{{.T.srv_integration_title}}">
+                <h4 class="text-adt-orange font-weight-bold">{{.T.srv_integration_title}}</h4>
+                <p class="text-muted">{{.T.srv_integration_desc}}</p>
+            </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <img src="/static/mobiles.jpeg" class="img-fluid rounded mb-3 shadow-sm" alt="{{.T.srv_mobile_title}}">
+                <h4 class="text-adt-blue font-weight-bold">{{.T.srv_mobile_title}}</h4>
+                <p class="text-muted">{{.T.srv_mobile_desc}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}

@@ -20,18 +20,25 @@ RUN go mod tidy
 RUN CGO_ENABLED=0 GOOS=linux go build -o artdo-web
 
 # Etapa 2: Imagen ligera para producción
-FROM scratch
+FROM alpine:latest
+
+# Instalar certificados CA para conexiones HTTPS (Gmail, Google API)
+RUN apk --no-cache add ca-certificates
+
+WORKDIR /root/
 
 # Copia el binario compilado desde la etapa de construcción
-COPY --from=builder /app/artdo-web /artdo-web
+COPY --from=builder /app/artdo-web .
 
-# Copia los templates y el archivo CSS necesario
-COPY --from=builder /app/templates /templates
-COPY --from=builder /app/artdotech-core.css /artdotech-core.css
-COPY --from=builder /app/static /static
+# Copia los archivos de configuración y recursos
+COPY --from=builder /app/config.json .
+COPY --from=builder /app/artdotech-core.css .
+COPY --from=builder /app/templates ./templates
+COPY --from=builder /app/static ./static
+COPY --from=builder /app/locales ./locales
 
 # Expone el puerto en el que la aplicación escucha
 EXPOSE 8080
 
 # Comando para ejecutar la aplicación
-ENTRYPOINT ["/artdo-web"]
+CMD ["./artdo-web"]

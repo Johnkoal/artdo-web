@@ -1,0 +1,122 @@
+{{define "content"}}
+<div class="position-relative bg-adt-gray1 py-5">
+    <div class="container text-center py-5">
+        <h1 class="display-4 font-weight-bold mb-4">{{.T.contact_title}}</h1>
+        <p class="lead text-muted mx-auto" style="max-width: 800px;">
+            {{.T.contact_subtitle}}
+        </p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <!-- Columna de Información (Izquierda) -->
+        <div class="col-lg-5 mb-5 mb-lg-0 pr-lg-5">
+            <h3 class="font-weight-bold mb-4 text-adt-blue">{{.T.contact_why_title}}</h3>
+            <p class="text-muted mb-4 text-justify">
+                {{.T.contact_why_text}}
+            </p>
+
+            <div class="mb-5">
+                <div class="d-flex align-items-start mb-4">
+                    <div class="bg-adt-blue text-white rounded-circle d-flex justify-content-center align-items-center mr-3 mt-1"
+                        style="width: 50px; height: 50px; min-width: 50px;">
+                        <i class="fas fa-map-marker-alt fa-lg"></i>
+                    </div>
+                    <div>
+                        <h5 class="font-weight-bold mb-1">{{.T.contact_location_title}}</h5>
+                        <p class="text-muted mb-0">{{.Config.Address}}</p>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-start mb-4">
+                    <div class="bg-adt-purple text-white rounded-circle d-flex justify-content-center align-items-center mr-3 mt-1"
+                        style="width: 50px; height: 50px; min-width: 50px;">
+                        <i class="fas fa-envelope fa-lg"></i>
+                    </div>
+                    <div>
+                        <h5 class="font-weight-bold mb-1">{{.T.contact_email_title}}</h5>
+                        <p class="text-muted mb-0">{{.Config.Email}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded shadow-sm border-left border-adt-orange"
+                style="border-width: 4px !important;">
+                <h5 class="font-weight-bold mb-3">{{.T.contact_process_title}}</h5>
+                <ul class="list-unstyled text-muted mb-0">
+                    <li class="mb-2"><i class="fas fa-check-circle text-success mr-2"></i> {{.T.contact_step1}}</li>
+                    <li class="mb-2"><i class="fas fa-check-circle text-success mr-2"></i> {{.T.contact_step2}}</li>
+                    <li><i class="fas fa-check-circle text-success mr-2"></i> {{.T.contact_step3}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Columna del Formulario (Derecha) -->
+        <div class="col-lg-7">
+            <div class="bg-white p-5 rounded shadow-lg">
+                <h3 class="font-weight-bold mb-4">{{.T.form_title}}</h3>
+
+                {{if .SuccessMessage}}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle mr-2"></i> {{.SuccessMessage}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {{end}}
+
+                {{if .ErrorMessage}}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-circle mr-2"></i> {{.ErrorMessage}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {{end}}
+
+                <form action="/contact?lang={{.Lang}}" method="post">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="nombre" class="font-weight-bold text-muted small">{{.T.form_name}}</label>
+                            <input type="text" class="form-control bg-light border-0 py-4" id="nombre" name="nombre"
+                                placeholder="{{.T.form_holder_name}}" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="email" class="font-weight-bold text-muted small">{{.T.form_email}}</label>
+                            <input type="email" class="form-control bg-light border-0 py-4" id="email" name="email"
+                                placeholder="{{.T.form_holder_email}}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="asunto" class="font-weight-bold text-muted small">{{.T.form_subject}}</label>
+                        <select class="form-control bg-light border-0" id="asunto" name="asunto" style="height: 50px;">
+                            <option value="">{{.T.form_opt_default}}</option>
+                            <option value="cotizacion">{{.T.form_opt_quote}}</option>
+                            <option value="soporte">{{.T.form_opt_support}}</option>
+                            <option value="alianza">{{.T.form_opt_partnership}}</option>
+                            <option value="otro">{{.T.form_opt_other}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje" class="font-weight-bold text-muted small">{{.T.form_message}}</label>
+                        <textarea class="form-control bg-light border-0" id="mensaje" name="mensaje" rows="5"
+                            placeholder="{{.T.form_holder_message}}" required></textarea>
+                    </div>
+
+                    <!-- reCAPTCHA -->
+                    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                    <div class="form-group d-flex justify-content-center">
+                        <div class="g-recaptcha" data-sitekey="{{.Config.Recaptcha.SiteKey}}"></div>
+                    </div>
+
+                    <button type="submit"
+                        class="btn btn-adt-blue btn-block py-3 font-weight-bold text-uppercase shadow-sm mt-4">
+                        {{.T.form_btn_send}} <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}

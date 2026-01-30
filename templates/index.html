@@ -1,17 +1,101 @@
 {{define "content"}}
 <div class="position-relative pt-5"
-    style="height: 100vh; background-image: url('/static/wallpaper2.jpg'); background-size: cover; background-position: center;">
-    <!-- Capa semitransparente
-    <div class="position-absolute w-100 h-100" style="background-color: rgba(43, 40, 40, 0.5); top: 0; left: 0;"></div> -->
+    style="height: 100vh; background-image: url('/static/tech_hero_bg.png'); background-size: cover; background-position: center;">
 
-    <!-- Contenido centrado sobre la capa, con fondo sólido y bordes redondeados -->
-    <div class="d-flex flex-column justify-content-center align-items-center text-light p-4"
-        style="background-color: rgba(22, 22, 22, 0.8); border-radius: 15px; max-width: 800px; margin: 0 auto;">
-        <h1>Bienvenidos a Artdotech</h1>
-        <p class="mt-3 text-center">Transformamos tus ideas en soluciones tecnológicas a la medida. Descubre cómo
-            nuestro equipo de expertos en desarrollo de software puede llevar tu negocio al siguiente nivel. ¡Haz clic a
-            continuación y comienza a innovar con nosotros!</p>
-        <a href="/nuestros-servicios" class="btn btn-adt-blue mt-4">Descubre nuestros servicios</a>
+    <!-- Gradient Overlay -->
+    <div class="position-absolute w-100 h-100"
+        style="background: linear-gradient(135deg, rgba(29, 29, 29, 0.9) 0%, rgba(29, 29, 29, 0.7) 100%); top: 0; left: 0;">
+    </div>
+
+    <!-- Contenido centrado -->
+    <div class="d-flex flex-column justify-content-center align-items-center text-light p-4 h-100 position-relative"
+        style="z-index: 2;">
+        <h1 class="display-3 font-weight-bold mb-3 text-center">{{.T.hero_welcome}}</h1>
+        <p class="lead mb-5 text-center" style="max-width: 700px; font-weight: 300;">{{.T.hero_subtitle}}</p>
+        <div>
+            <div class="d-flex flex-column flex-md-row justify-content-center">
+                <a href="/services?lang={{.Lang}}"
+                    class="btn btn-adt-blue btn-lg mr-md-3 mb-3 mb-md-0 shadow-lg px-5 py-3 rounded-pill font-weight-bold">{{.T.hero_cta_services}}</a>
+                <a href="/contact?lang={{.Lang}}"
+                    class="btn btn-outline-light btn-lg shadow-lg px-5 py-3 rounded-pill font-weight-bold">{{.T.hero_cta_contact}}</a>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Section: Services Preview -->
+<div class="container py-5" style="margin-top: -50px; position: relative; z-index: 3;">
+    <div class="row">
+        <!-- Service 1 -->
+        <div class="col-md-4 mb-4">
+            <div class="card service-card h-100 border-0 shadow-lg text-center p-4">
+                <div class="card-body">
+                    <i class="fas fa-code text-adt-blue service-icon"></i>
+                    <h4 class="card-title font-weight-bold my-3">{{.T.service_dev_title}}</h4>
+                    <p class="card-text text-muted mb-4">{{.T.service_dev_desc}}</p>
+                    <a href="/services?lang={{.Lang}}"
+                        class="btn btn-link text-adt-blue font-weight-bold p-0">{{.T.btn_more_details}} <i
+                            class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Service 2 -->
+        <div class="col-md-4 mb-4">
+            <div class="card service-card h-100 border-0 shadow-lg text-center p-4">
+                <div class="card-body">
+                    <i class="fas fa-chart-line text-adt-purple service-icon"></i>
+                    <h4 class="card-title font-weight-bold my-3">{{.T.service_consulting_title}}</h4>
+                    <p class="card-text text-muted mb-4">{{.T.service_consulting_desc}}</p>
+                    <a href="/services?lang={{.Lang}}"
+                        class="btn btn-link text-adt-purple font-weight-bold p-0">{{.T.btn_more_details}} <i
+                            class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Service 3 -->
+        <div class="col-md-4 mb-4">
+            <div class="card service-card h-100 border-0 shadow-lg text-center p-4">
+                <div class="card-body">
+                    <i class="fas fa-mobile-alt text-adt-orange service-icon"></i>
+                    <h4 class="card-title font-weight-bold my-3">{{.T.service_mobile_title}}</h4>
+                    <p class="card-text text-muted mb-4">{{.T.service_mobile_desc}}</p>
+                    <a href="/services?lang={{.Lang}}"
+                        class="btn btn-link text-adt-orange font-weight-bold p-0">{{.T.btn_more_details}} <i
+                            class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section: Why Choose Us -->
+<section class="bg-light py-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <img src="/static/why_choose_us.png" alt="Innovación" class="img-fluid rounded shadow-lg">
+            </div>
+            <div class="col-md-6 pl-md-5">
+                <h2 class="font-weight-bold mb-4">{{.T.why_us_title}}</h2>
+                <p class="text-muted mb-4">{{.T.why_us_p1}}</p>
+                <ul class="list-unstyled mb-5">
+                    <li class="mb-3 d-flex align-items-center">
+                        <i class="fas fa-check-circle text-success mr-3 fa-lg"></i>
+                        <span class="font-weight-bold">{{.T.why_us_check1}}</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center">
+                        <i class="fas fa-check-circle text-success mr-3 fa-lg"></i>
+                        <span class="font-weight-bold">{{.T.why_us_check2}}</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center">
+                        <i class="fas fa-check-circle text-success mr-3 fa-lg"></i>
+                        <span class="font-weight-bold">{{.T.why_us_check3}}</span>
+                    </li>
+                </ul>
+                <a href="/about?lang={{.Lang}}"
+                    class="btn btn-adt-purple px-5 py-3 rounded-pill shadow font-weight-bold">{{.T.btn_know_more}}</a>
+            </div>
+        </div>
+    </div>
+</section>
 {{end}}

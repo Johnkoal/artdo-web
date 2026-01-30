@@ -7,56 +7,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/artdotech-core.css">
     <link rel="icon" href="/static/LogoArtdotechIcon.png" type="image/x-icon"> <!-- Favicon -->
     <title>{{.Title}}</title>
+    <meta name="description" content="{{.MetaDescription}}">
+    <meta name="keywords" content="{{.MetaKeywords}}">
+    <link rel="canonical" href="{{.CanonicalURL}}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{.CanonicalURL}}">
+    <meta property="og:title" content="{{.Title}}">
+    <meta property="og:description" content="{{.MetaDescription}}">
+    <meta property="og:image" content="https://artdotech.com/static/social-share.jpg">
+    <meta property="og:site_name" content="{{.T.og_site_name}}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{.CanonicalURL}}">
+    <meta property="twitter:title" content="{{.Title}}">
+    <meta property="twitter:description" content="{{.MetaDescription}}">
+    <meta property="twitter:image" content="https://artdotech.com/static/social-share.jpg">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">
-            <img src="/static/LogoArtdotechIcon.png" width="40" height="40" class="d-inline-block align-top" alt="Logo">
-            Artdotech
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="/quienes-somos">¿Quiénes somos?</a></li>
-                <li class="nav-item"><a class="nav-link" href="/nuestros-servicios">Nuestros servicios</a></li>
-                <li class="nav-item"><a class="nav-link" href="/contacto">Contáctenos</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container">
-        {{template "content" .}}
-    </div>
-    <footer class="bg-dark text-light pt-4">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <h5>Contáctanos</h5>
-                    <p><i class="fas fa-phone-alt"></i> (+57) 310 2003551</p>
-                    <p><i class="fas fa-envelope"></i> john.sierra@artdotech.com</p>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h5>Síguenos en</h5>
-                    <a href="https://www.facebook.com/Artdotech" target="_blank" class="text-light mr-3"><i
-                            class="fab fa-facebook-f"></i>
-                        Facebook</a>
-                    <a href="https://x.com/ArtdotechSas" target="_blank" class="text-light mr-3"><i
-                            class="fab fa-twitter"></i> Twitter</a>
-                    <a href="https://www.instagram.com/artdotechsas" target="_blank" class="text-light"><i
-                            class="fab fa-instagram"></i>
-                        Instagram</a>
-                </div>
+    <nav class="header-section navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/?lang={{.Lang}}">
+                <img src="/static/LogoArtdotechIcon.png" width="45" height="45" class="d-inline-block align-top mr-2"
+                    alt="{{.Config.CompanyName}}">
+                <span class="font-weight-bold h4 mb-0 ml-2">{{.Config.CompanyName}}</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link px-3" href="/?lang={{.Lang}}">{{.T.nav_home}}</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="/about?lang={{.Lang}}">{{.T.nav_about}}</a></li>
+                    <li class="nav-item"><a class="nav-link px-3"
+                            href="/services?lang={{.Lang}}">{{.T.nav_services}}</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 btn btn-outline-light ml-3 text-white rounded-pill"
+                            href="/contact?lang={{.Lang}}">{{.T.nav_contact}}</a></li>
+                    <!-- Language Switcher -->
+                    <li class="nav-item ml-3">
+                        <a href="?lang=es"
+                            class='text-white small font-weight-bold mr-2 {{if eq .Lang "es"}}text-decoration-underline{{end}}'>ES</a>
+                        <span class="text-white-50">|</span>
+                        <a href="?lang=en"
+                            class='text-white small font-weight-bold ml-2 {{if eq .Lang "en"}}text-decoration-underline{{end}}'>EN</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="text-center py-3 bg-dark">
-            <small>&copy; 2024 Artdotech. Todos los derechos reservados.</small>
+        <div class="header-gradient-border"></div>
+    </nav>
+
+    {{template "content" .}}
+
+    <!-- Footer -->
+    <footer class="footer-section pt-5 pb-3 mt-auto">
+        <div class="footer-gradient-border mb-5"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <a href="/?lang={{.Lang}}"
+                        class="footer-brand d-flex align-items-center mb-3 text-white text-decoration-none">
+                        <img src="/static/LogoArtdotechIcon.png" width="40" height="40" class="mr-2"
+                            alt="{{.Config.CompanyName}}">
+                        <span class="h4 font-weight-bold mb-0">{{.Config.CompanyName}}</span>
+                    </a>
+                    <p>{{.T.footer_description}}</p>
+                    <div class="d-flex mt-3">
+                        <a href="{{.Config.Social.Linkedin}}" class="social-icon mr-2" target="_blank"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="{{.Config.Social.Twitter}}" class="social-icon mr-2" target="_blank"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="{{.Config.Social.Instagram}}" class="social-icon mr-2" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-white font-weight-bold mb-3">{{.T.footer_quick_links}}</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/?lang={{.Lang}}" class="footer-link">{{.T.nav_home}}</a></li>
+                        <li><a href="/about?lang={{.Lang}}" class="footer-link">{{.T.nav_about}}</a></li>
+                        <li><a href="/services?lang={{.Lang}}" class="footer-link">{{.T.nav_services}}</a>
+                        </li>
+                        <li><a href="/contact?lang={{.Lang}}" class="footer-link">{{.T.nav_contact}}</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-white font-weight-bold mb-3">{{.T.footer_contact}}</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt text-adt-blue mr-2"></i>
+                            {{.Config.Address}}</li>
+                        <li class="mb-2"><i class="fas fa-envelope text-adt-blue mr-2"></i> {{.Config.Email}}</li>
+                        <li class="mb-2"><i class="fas fa-phone text-adt-blue mr-2"></i> {{.Config.Phone}}</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary mt-4">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-left">
+                    <p class="mb-0">&copy; 2024 {{.Config.CompanyName}} {{.T.footer_rights}}</p>
+                </div>
+            </div>
         </div>
     </footer>
 
