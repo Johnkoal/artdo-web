@@ -82,5 +82,21 @@
     "form_opt_other": "Otro",
     "form_message": "Mensaje",
     "form_holder_message": "Cuéntanos más sobre tu proyecto o necesidad...",
-    "form_btn_send": "Enviar Mensaje"
+    "form_btn_send": "Enviar Mensaje",
+    "home_tech_title": "Tecnologías que Dominamos",
+    "home_projects_title": "Proyectos Destacados",
+    "project_1_tag": "Fintech",
+    "project_1_title": "Billetera Digital",
+    "project_1_desc": "Plataforma segura para pagos y transferencias en tiempo real, integrada con bancos locales.",
+    "project_2_tag": "Salud",
+    "project_2_title": "Telemedicina AI",
+    "project_2_desc": "App móvil para consultas remotas con triaje automatizado por Inteligencia Artificial.",
+    "project_3_tag": "Logística",
+    "project_3_title": "Rastreo Satelital",
+    "project_3_desc": "Dashboard de control de flota con optimización de rutas y alertas en vivo.",
+    "industries_title": "Industrias que Atendemos",
+    "ind_fintech": "Banca & Fintech",
+    "ind_health": "Salud & Biotech",
+    "ind_retail": "Retail & E-commerce",
+    "ind_logistics": "Logística & Transporte"
 }

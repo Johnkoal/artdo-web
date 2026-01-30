@@ -82,5 +82,21 @@
     "form_opt_other": "Other",
     "form_message": "Message",
     "form_holder_message": "Tell us more about your project or need...",
-    "form_btn_send": "Send Message"
+    "form_btn_send": "Send Message",
+    "home_tech_title": "Technologies We Master",
+    "home_projects_title": "Featured Projects",
+    "project_1_tag": "Fintech",
+    "project_1_title": "Digital Wallet",
+    "project_1_desc": "Secure mobile platform for real-time payments and transfers, integrated with local banks.",
+    "project_2_tag": "Health",
+    "project_2_title": "Telemedicine AI",
+    "project_2_desc": "Mobile app for remote consultations with AI-powered triage automation.",
+    "project_3_tag": "Logistics",
+    "project_3_title": "Satellite Tracking",
+    "project_3_desc": "Fleet control dashboard with route optimization and live alerts.",
+    "industries_title": "Industries We Serve",
+    "ind_fintech": "Banking & Fintech",
+    "ind_health": "Health & Biotech",
+    "ind_retail": "Retail & E-commerce",
+    "ind_logistics": "Logistics & Transport"
 }
