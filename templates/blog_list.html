@@ -1,0 +1,32 @@
+{{define "content"}}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 font-weight-bold">{{.T.nav_blog}}</h1>
+        <p class="lead text-muted">{{.T.blog_subtitle}}</p>
+    </div>
+
+    <div class="row">
+        {{if .Posts}}
+        {{range .Posts}}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm project-card">
+                <div class="card-body">
+                    <small class="text-muted">{{.CreatedAt.Format "Jan 02, 2006"}}</small>
+                    <h5 class="card-title font-weight-bold mt-2">{{.Title}}</h5>
+                    <p class="card-text text-muted">{{.Summary}}</p>
+                    <a href="/blog/post/{{.Slug}}{{if $.Lang}}?lang={{$.Lang}}{{end}}"
+                        class="btn btn-link p-0 text-adt-blue font-weight-bold">
+                        {{$.T.btn_more_details}} <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{end}}
+        {{else}}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted">{{.T.blog_empty}}</p>
+        </div>
+        {{end}}
+    </div>
+</div>
+{{end}}

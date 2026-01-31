@@ -10,6 +10,7 @@ import (
 	"net/smtp"
 	"net/url"
 	"os"
+	"path/filepath"
 )
 
 type PageData struct {
@@ -22,6 +23,8 @@ type PageData struct {
 	Config          Config            // Configuración global
 	SuccessMessage  string            // Mensaje de éxito
 	ErrorMessage    string            // Mensaje de error
+	Posts           []Post            // Lista de posts
+	CurrentPost     *Post             // Post individual
 }
 
 type Config struct {
@@ -45,6 +48,9 @@ type Config struct {
 		SiteKey   string `json:"site_key"`
 		SecretKey string `json:"secret_key"`
 	} `json:"recaptcha"`
+	Database struct {
+		DBPath string `json:"db_path"`
+	} `json:"database"`
 }
 
 var translations = make(map[string]map[string]string)
@@ -83,8 +89,10 @@ func loadTranslations() {
 }
 
 func main() {
+	log.Println("--- Iniciando servidor Artdotech ---")
 	loadConfig()
 	loadTranslations()
+	initDB()
 
 	// Servir archivos estáticos
 	http.Handle("/artdotech-core.css", http.FileServer(http.Dir(".")))
@@ -117,6 +125,17 @@ func main() {
 	http.HandleFunc("/sitemap.xml", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "static/sitemap.xml")
 	})
+
+	// Blog Routes
+	http.HandleFunc("/blog", handleBlogList)
+	http.HandleFunc("/blog/post/", handleBlogPost)
+
+	// Admin Blog Routes (Simple security: check for a secret query param for now or just allow it if asked)
+	http.HandleFunc("/admin/blog", handleAdminBlogList)
+	http.HandleFunc("/admin/blog/new", handleAdminBlogNew)
+	http.HandleFunc("/admin/blog/edit", handleAdminBlogEdit)
+	http.HandleFunc("/admin/blog/save", handleAdminBlogSave)
+	http.HandleFunc("/admin/blog/delete", handleAdminBlogDelete)
 
 	log.Println("Servidor escuchando en :8080...")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
@@ -282,7 +301,14 @@ func langQuery(r *http.Request) string {
 }
 
 func renderTemplate(w http.ResponseWriter, tmpl string, data PageData) {
-	t, err := template.ParseFiles("templates/layout.html", "templates/"+tmpl)
+	funcMap := template.FuncMap{
+		"safeHTML": func(s string) template.HTML {
+			return template.HTML(s)
+		},
+	}
+
+	t := template.New("").Funcs(funcMap)
+	t, err := t.ParseFiles("templates/layout.html", "templates/"+tmpl)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -290,4 +316,124 @@ func renderTemplate(w http.ResponseWriter, tmpl string, data PageData) {
 	if err := t.ExecuteTemplate(w, "layout", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
+}
+
+// Blog Handlers
+
+func handleBlogList(w http.ResponseWriter, r *http.Request) {
+	data := getPageData(r, "home") // Usar home metadata para el blog list por ahora
+	posts, err := getAllPosts(true)
+	if err != nil {
+		log.Printf("Error obteniendo posts: %v", err)
+		data.ErrorMessage = "No se pudieron cargar los artículos del blog."
+	}
+	data.Posts = posts
+	data.Title = "Blog - Artdotech"
+	renderTemplate(w, "blog_list.html", data)
+}
+
+func handleBlogPost(w http.ResponseWriter, r *http.Request) {
+	slug := filepath.Base(r.URL.Path)
+	post, err := getPostBySlug(slug)
+	if err != nil {
+		http.NotFound(w, r)
+		return
+	}
+	data := getPageData(r, "home")
+	data.CurrentPost = post
+	data.Title = post.Title + " - Blog Artdotech"
+	renderTemplate(w, "blog_post.html", data)
+}
+
+// Admin Handlers
+
+func handleAdminBlogList(w http.ResponseWriter, r *http.Request) {
+	data := getPageData(r, "home")
+	posts, err := getAllPosts(false)
+	if err != nil {
+		log.Printf("Error obteniendo posts admin: %v", err)
+	}
+	data.Posts = posts
+	renderTemplate(w, "admin_blog.html", data)
+}
+
+func handleAdminBlogNew(w http.ResponseWriter, r *http.Request) {
+	data := getPageData(r, "home")
+	data.CurrentPost = &Post{}
+	renderTemplate(w, "admin_editor.html", data)
+}
+
+func handleAdminBlogEdit(w http.ResponseWriter, r *http.Request) {
+	idStr := r.URL.Query().Get("id")
+	var id int
+	fmt.Sscanf(idStr, "%d", &id)
+
+	posts, _ := getAllPosts(false)
+	var post *Post
+	for _, p := range posts {
+		if p.ID == id {
+			post = &p
+			break
+		}
+	}
+
+	if post == nil {
+		http.NotFound(w, r)
+		return
+	}
+
+	data := getPageData(r, "home")
+	data.CurrentPost = post
+	renderTemplate(w, "admin_editor.html", data)
+}
+
+func handleAdminBlogSave(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Redirect(w, r, "/admin/blog", http.StatusSeeOther)
+		return
+	}
+
+	idStr := r.FormValue("id")
+	var id int
+	fmt.Sscanf(idStr, "%d", &id)
+
+	published := r.FormValue("published") == "on"
+
+	p := Post{
+		ID:        id,
+		Title:     r.FormValue("title"),
+		Slug:      r.FormValue("slug"),
+		Content:   r.FormValue("content"),
+		Summary:   r.FormValue("summary"),
+		Published: published,
+	}
+
+	var err error
+	if id == 0 {
+		err = createPost(p)
+	} else {
+		err = updatePost(p)
+	}
+
+	if err != nil {
+		log.Printf("Error guardando post: %v", err)
+		// Aquí podrías redirigir con un error
+	}
+
+	http.Redirect(w, r, "/admin/blog", http.StatusSeeOther)
+}
+
+func handleAdminBlogDelete(w http.ResponseWriter, r *http.Request) {
+	idStr := r.URL.Query().Get("id")
+	var id int
+	fmt.Sscanf(idStr, "%d", &id)
+
+	if id != 0 {
+		err := deletePost(id)
+		if err != nil {
+			log.Printf("Error eliminando post: %v", err)
+		}
+	}
+
+	http.Redirect(w, r, "/admin/blog", http.StatusSeeOther)
 }

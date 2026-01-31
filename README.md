@@ -71,7 +71,7 @@ The site showcases our expertise in:
 2.  Configure your `config.json` with your credentials.
 3.  Run the application:
     ```bash
-    go run main.go
+    go run .
     ```
 4.  Open `http://localhost:8080` in your browser.
 

@@ -322,6 +322,35 @@ h6 {
     border-radius: 2px;
 }
 
+/* Blog Specific Styles */
+.blog-post-content {
+    line-height: 1.8;
+    color: #444;
+}
+
+.blog-post-content h1,
+.blog-post-content h2,
+.blog-post-content h3 {
+    color: #333;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.blog-post-content .post-text {
+    font-size: 1.1rem;
+}
+
+.blog-post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    content: "/";
+}
+
 /* Footer Styles */
 .footer-section {
     background-color: #1a1a1a;

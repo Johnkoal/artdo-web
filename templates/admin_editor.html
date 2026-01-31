@@ -1,0 +1,62 @@
+{{define "content"}}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="font-weight-bold">{{if .CurrentPost.ID}}Editar Artículo{{else}}Nuevo Artículo{{end}}</h1>
+                <a href="/admin/blog" class="btn btn-link text-muted">Cancelar</a>
+            </div>
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <form action="/admin/blog/save" method="POST">
+                        <input type="hidden" name="id" value="{{.CurrentPost.ID}}">
+
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold">Título</label>
+                            <input type="text" name="title" class="form-control form-control-lg"
+                                value="{{.CurrentPost.Title}}" required placeholder="Escribe el título...">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label class="font-weight-bold">Slug (URL)</label>
+                                    <input type="text" name="slug" class="form-control" value="{{.CurrentPost.Slug}}"
+                                        required placeholder="ej: mi-nuevo-articulo">
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center">
+                                <div class="custom-control custom-switch mb-2">
+                                    <input type="checkbox" name="published" class="custom-control-input"
+                                        id="publishedSwitch" {{if .CurrentPost.Published}}checked{{end}}>
+                                    <label class="custom-control-label font-weight-bold"
+                                        for="publishedSwitch">Publicado</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold">Resumen / Extracto</label>
+                            <textarea name="summary" class="form-control" rows="3"
+                                placeholder="Breve descripción para el listado...">{{.CurrentPost.Summary}}</textarea>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold">Contenido (HTML)</label>
+                            <textarea name="content" class="form-control" rows="15" required
+                                placeholder="Escribe el contenido aquí (puedes usar etiquetas HTML)...">{{.CurrentPost.Content}}</textarea>
+                        </div>
+
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-adt-blue btn-lg rounded-pill px-5 shadow-sm">
+                                <i class="fas fa-save mr-2"></i> Guardar Artículo
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}

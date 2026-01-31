@@ -18,5 +18,8 @@
     "recaptcha": {
         "site_key": "6LdstFssAAAAAEsiQqVzhaqnqkFMdJAhcIz58x7E",
         "secret_key": "6LdstFssAAAAALjGwWvRpidJgqKVmO9BfiFtVqnU"
+    },
+    "database": {
+        "db_path": "data/artdotech.db"
     }
 }
